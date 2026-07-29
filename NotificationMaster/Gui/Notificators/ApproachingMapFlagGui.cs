@@ -8,7 +8,7 @@ internal unsafe partial class ConfigGui
         ImGui.TextWrapped("Warning: this feature is EXPERIMENTAL!");
         ImGui.PopStyleColor();*/
         var curPosEnable = ImGui.GetCursorPos();
-        if(ImGui.Checkbox("Enable", ref p.cfg.mapFlag_Enable))
+        if(ImGui.Checkbox("啟用", ref p.cfg.mapFlag_Enable))
         {
             ApproachingMapFlag.Setup(p.cfg.mapFlag_Enable, p);
         }
@@ -42,29 +42,29 @@ internal unsafe partial class ConfigGui
             }
             ImGui.PopStyleColor();
             ImGui.SetCursorPos(curPosCont);
-            ImGui.Text("When getting close to map flag if FFXIV is running in background:");
-            ImGui.Checkbox("Show tray notification", ref p.cfg.mapFlag_ShowToastNotification);
-            ImGui.Checkbox("Flash taskbar icon", ref p.cfg.mapFlag_FlashTrayIcon);
-            ImGui.Checkbox("Bring FFXIV to foreground", ref p.cfg.mapFlag_AutoActivateWindow);
-            ImGui.Checkbox("Execute actions even if game is active", ref p.cfg.mapFlag_AlwaysExecute);
+            ImGui.Text("FFXIV 在背景執行且接近地圖標記時：");
+            ImGui.Checkbox("顯示系統匣通知", ref p.cfg.mapFlag_ShowToastNotification);
+            ImGui.Checkbox("閃爍工作列圖示", ref p.cfg.mapFlag_FlashTrayIcon);
+            ImGui.Checkbox("將 FFXIV 切換到前景", ref p.cfg.mapFlag_AutoActivateWindow);
+            ImGui.Checkbox("即使遊戲在前景也執行", ref p.cfg.mapFlag_AlwaysExecute);
             ForegroundWarning(p.cfg.mapFlag_AutoActivateWindow);
             ImGui.SetNextItemWidth(100f);
-            ImGui.DragInt("Distance to marker", ref p.cfg.mapFlag_TriggerDistance);
-            ImGui.Text("Note: this is in-game coordinates distance, not map coordinates distance.");
+            ImGui.DragInt("標記觸發距離", ref p.cfg.mapFlag_TriggerDistance);
+            ImGui.Text("注意：此數值使用遊戲世界座標距離，而非地圖座標距離。");
             if(p.mapFlag.isFlagSet && Svc.ClientState.TerritoryType == p.mapFlag.flagTerritory)
             {
-                ImGui.Text($"You are currently {distance:0} yalms away from currently set marker.");
+                ImGui.Text($"目前距離標記 {distance:0} 米。");
             }
             else
             {
-                ImGui.Text("Set flag on your map to see your current distance to it");
+                ImGui.Text("請先在地圖設定標記，以顯示目前距離");
             }
-            ImGui.Checkbox("Also trigger on crossing X/Y flag axis before reaching set distance", ref p.cfg.mapFlag_TriggerOnCross);
+            ImGui.Checkbox("尚未到達設定距離，但越過標記的 X/Y 軸時也觸發", ref p.cfg.mapFlag_TriggerOnCross);
             ImGui.SetNextItemWidth(100f);
-            ImGui.DragInt("Axis cross tolerance", ref p.cfg.mapFlag_CrossDelta);
+            ImGui.DragInt("越軸容許值", ref p.cfg.mapFlag_CrossDelta);
             DrawSoundSettings(ref p.cfg.mapFlag_SoundSettings);
             DrawHttpMaster(p.cfg.mapFlag_HttpRequests, ref p.cfg.mapFlag_HttpRequestsEnable,
-                "None available");
+                "無可用占位符");
         }
     }
 }

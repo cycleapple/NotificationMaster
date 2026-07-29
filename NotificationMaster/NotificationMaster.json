@@ -1,9 +1,9 @@
 ﻿{
   "Name": "NotificationMaster",
   "Author": "NightmareXIV",
-  "Description": "Notifies you about various events while your game is minimized.",
-  "Punchline": "Currently supports notifications: chat messages, approaching map flag, duty found, ending of cutscenes, gp restoration, error during logging in, mob has been pulled.",
-  "RepoUrl": "https://github.com/NightmareXIV/NotificationMaster",
+  "Description": "遊戲最小化時，針對各種事件傳送通知。",
+  "Punchline": "支援聊天訊息、接近地圖標記、任務配對、過場動畫結束、採集力恢復、登入錯誤與狩獵目標開戰等通知。",
+  "RepoUrl": "https://github.com/cycleapple/NotificationMaster",
     "Tags": [
         "notification"
     ],

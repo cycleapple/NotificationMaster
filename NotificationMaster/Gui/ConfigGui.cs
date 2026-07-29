@@ -24,11 +24,11 @@ internal partial class ConfigGui : IDisposable
         if(p.PauseUntil > Environment.TickCount64)
         {
             ImGuiHelpers.ForceNextWindowMainViewport();
-            var sb = new StringBuilder("NotificationMaster is paused");
+            var sb = new StringBuilder("NotificationMaster 已暫停");
             if(p.PauseUntil != long.MaxValue)
             {
                 var ts = TimeSpan.FromMilliseconds(p.PauseUntil - Environment.TickCount64);
-                sb.Append($" for {(ts.Days * 60 + ts.Hours):D2}:{ts.Minutes:D2}:{ts.Seconds:D2}");
+                sb.Append($"，剩餘 {(ts.Days * 24 + ts.Hours):D2}:{ts.Minutes:D2}:{ts.Seconds:D2}");
             }
             var text = sb.ToString();
             var dims = ImGui.CalcTextSize(text);
@@ -46,24 +46,24 @@ internal partial class ConfigGui : IDisposable
         {
 
             ImGui.PushStyleVar(ImGuiStyleVar.WindowMinSize, new Vector2(650f, 200f));
-            if(ImGui.Begin("NotificationMaster configuration", ref open))
+            if(ImGui.Begin("NotificationMaster 設定", ref open))
             {
                 if(p.fileSelector.IsSelecting())
                 {
-                    ImGui.Text("Awaiting file selection...");
+                    ImGui.Text("等待選擇檔案……");
                 }
                 else
                 {
                     PatreonBanner.DrawRight();
                     ImGui.BeginTabBar("##NMtabs");
-                    DrawTab("GP replenish", DrawGpNotify, p.cfg.gp_Enable);
-                    DrawTab("Cutscene ending", DrawCutsceneConfig, p.cfg.cutscene_Enable);
-                    DrawTab("Chat message", DrawChatMessageGui, p.cfg.chatMessage_Enable);
-                    DrawTab("Duty pop", DrawCfPopConfig, p.cfg.cfPop_Enable);
-                    DrawTab("Connection error", DrawLoginErrorConfig, p.cfg.loginError_Enable);
-                    DrawTab("Approaching map flag", DrawMapFlagConfig, p.cfg.mapFlag_Enable);
-                    DrawTab("Mob pulled", DrawMobPulledConfig, p.cfg.mobPulled_Enable);
-                    DrawTab("PartyFinder", DrawPartyFinderConfig, p.cfg.partyFinder_Enable);
+                    DrawTab("採集力恢復", DrawGpNotify, p.cfg.gp_Enable);
+                    DrawTab("過場動畫結束", DrawCutsceneConfig, p.cfg.cutscene_Enable);
+                    DrawTab("聊天訊息", DrawChatMessageGui, p.cfg.chatMessage_Enable);
+                    DrawTab("任務配對", DrawCfPopConfig, p.cfg.cfPop_Enable);
+                    DrawTab("連線錯誤", DrawLoginErrorConfig, p.cfg.loginError_Enable);
+                    DrawTab("接近地圖標記", DrawMapFlagConfig, p.cfg.mapFlag_Enable);
+                    DrawTab("狩獵目標開戰", DrawMobPulledConfig, p.cfg.mobPulled_Enable);
+                    DrawTab("招募隊員", DrawPartyFinderConfig, p.cfg.partyFinder_Enable);
                     PatreonBanner.RightTransparentTab();
                     ImGui.EndTabBar();
                 }
@@ -72,7 +72,7 @@ internal partial class ConfigGui : IDisposable
             if(!open)
             {
                 p.cfg.Save();
-                Notify.Success("Configuration saved");
+                Notify.Success("設定已儲存");
             }
             ImGui.PopStyleVar();
         }
@@ -104,7 +104,7 @@ internal partial class ConfigGui : IDisposable
     {
         if(display)
         {
-            ImGui.TextColored(ImGuiColors.DalamudRed, "Unfortunately bringing FFXIV to foreground isn't very reliable function.\nIf it fails to work for you - not much can be done.");
+            ImGui.TextColored(ImGuiColors.DalamudRed, "將 FFXIV 切換到前景並非完全可靠。\n若此功能在你的環境無法運作，目前沒有穩定的替代方式。");
         }
     }
 }
