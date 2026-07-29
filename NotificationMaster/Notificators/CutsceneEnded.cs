@@ -32,7 +32,7 @@ internal class CutsceneEnded : IDisposable
             if(p.cfg.cutscene_AutoActivateWindow) Native.Impl.Activate();
             if(p.cfg.cutscene_ShowToastNotification)
             {
-                TrayIconManager.ShowToast("Cutscene ended");
+                TrayIconManager.ShowToast("過場動畫已結束");
             }
             if(p.cfg.cutscene_HttpRequestsEnable)
             {

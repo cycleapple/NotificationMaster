@@ -56,7 +56,7 @@ internal unsafe class ApproachingMapFlag
                 if(IsEnabled && !HasTriggered)
                 {
                     PluginLog.Debug($"{ImGui.GetFrameCount()} Distance reached, notification fired");
-                    DoNotify("You have reached your destination!");
+                    DoNotify("已抵達目的地！");
                 }
                 HasTriggered = true;
             }
@@ -70,7 +70,7 @@ internal unsafe class ApproachingMapFlag
                 if(IsEnabled && !HasTriggered && p.cfg.mapFlag_TriggerOnCross)
                 {
                     PluginLog.Debug($"{ImGui.GetFrameCount()} Crossed X line, notification fired");
-                    DoNotify("You have crossed your destination border (X)!");
+                    DoNotify("已越過目的地邊界（X）！");
                 }
                 UpdateDirections();
             }
@@ -80,7 +80,7 @@ internal unsafe class ApproachingMapFlag
                 if(IsEnabled && !HasTriggered && p.cfg.mapFlag_TriggerOnCross)
                 {
                     PluginLog.Debug($"{ImGui.GetFrameCount()} Crossed Y line, notification fired");
-                    DoNotify("You have crossed your destination border (Y)!");
+                    DoNotify("已越過目的地邊界（Y）！");
                 }
                 UpdateDirections();
             }

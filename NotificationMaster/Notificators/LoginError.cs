@@ -37,7 +37,7 @@ internal unsafe class LoginError : IDisposable
                         if(p.cfg.loginError_AutoActivateWindow) Native.Impl.Activate();
                         if(p.cfg.loginError_ShowToastNotification)
                         {
-                            TrayIconManager.ShowToast("Server connection error occurred!", "");
+                            TrayIconManager.ShowToast("發生伺服器連線錯誤！", "");
                         }
                         if(p.cfg.loginError_HttpRequestsEnable)
                         {

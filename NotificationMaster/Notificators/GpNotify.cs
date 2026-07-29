@@ -22,7 +22,7 @@ internal unsafe class GpNotify : IDisposable
         Svc.Framework.Update += Tick;
         Svc.Commands.AddHandler("/gp", new CommandInfo(OnCommand)
         {
-            HelpMessage = "open config\n/gp <number> → set trigger GP amount"
+            HelpMessage = "開啟設定\n/gp <數值> → 設定採集力通知門檻"
         });
     }
 
@@ -39,18 +39,18 @@ internal unsafe class GpNotify : IDisposable
                 var newgp = int.Parse(arguments.Trim());
                 if(newgp < 0)
                 {
-                    Notify.Error("GP can't be negative");
+                    Notify.Error("採集力不可為負數");
                 }
                 else
                 {
                     p.cfg.gp_GPTreshold = newgp;
                     p.cfg.Save();
-                    Notify.Success("Trigger GP amount set to " + p.cfg.gp_GPTreshold);
+                    Notify.Success("採集力通知門檻已設為 " + p.cfg.gp_GPTreshold);
                 }
             }
             catch(Exception e)
             {
-                Notify.Error("Error: " + e.Message);
+                Notify.Error("錯誤：" + e.Message);
             }
         }
     }
@@ -87,7 +87,7 @@ internal unsafe class GpNotify : IDisposable
                     if(p.cfg.gp_AutoActivateWindow) Native.Impl.Activate();
                     if(p.cfg.gp_ShowToastNotification)
                     {
-                        TrayIconManager.ShowToast(gp + " GP ready!");
+                        TrayIconManager.ShowToast($"採集力已恢復至 {gp}！");
                     }
 
                     if(p.cfg.gp_HttpRequestsEnable)

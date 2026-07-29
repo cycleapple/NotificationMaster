@@ -59,7 +59,7 @@ internal class ChatMessage : IDisposable
                         if(p.cfg.chatMessage_AutoActivateWindow && !e.NoForeground) Native.Impl.Activate();
                         if(p.cfg.chatMessage_ShowToastNotification && !e.NoToast)
                         {
-                            TrayIconManager.ShowToast(messageFullStr, "Message" + (senderFullStr == "" ? "" : $" from {senderFullStr}"));
+                            TrayIconManager.ShowToast(messageFullStr, "聊天訊息" + (senderFullStr == "" ? "" : $"，來自 {senderFullStr}"));
                         }
                         if(p.cfg.chatMessage_HttpRequestsEnable && !e.NoHTTP)
                         {
@@ -115,7 +115,7 @@ internal class ChatMessage : IDisposable
 [Serializable]
 public class ChatMessageElement
 {
-    [NonSerialized] internal static readonly string[] CompareTypes = { "Exact", "Case insensitive", "Regexp" };
+    [NonSerialized] internal static readonly string[] CompareTypes = { "精確比對", "不分大小寫", "正規表示式" };
 
     public ushort ChatType = 0;
     public HashSet<ushort> ChatTypes = [];

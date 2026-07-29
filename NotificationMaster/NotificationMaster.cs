@@ -66,14 +66,14 @@ public class NotificationMaster : IDalamudPlugin
             {
                 configGui.open = true;
                 Notify.Warning(
-                    "You have installed NotificationMaster plugin. By default, it has no modules enabled. \n" +
-                    "A settings window has been opened: please configure the plugin.");
+                    "NotificationMaster 已安裝完成，預設不會啟用任何通知模組。\n" +
+                    "設定視窗已開啟，請依需求完成設定。");
             }
             Svc.Commands.AddHandler("/pnotify", new CommandInfo(OnCommand)
             {
-                HelpMessage = "open/close configuration\n" +
-                "/pnotify shutup|s [time in minutes] - pause plugin for specified amount of minutes or until restart if time is not specified\n" +
-                "/pnotify resume|r - resume plugin operation"
+                HelpMessage = "開啟／關閉設定\n" +
+                "/pnotify shutup|s [分鐘] - 暫停指定分鐘數；未指定時間則暫停至重新啟動\n" +
+                "/pnotify resume|r - 恢復插件運作"
             });
             IPC = new();
             NotificationMasterApi = new(Svc.PluginInterface);
@@ -95,29 +95,29 @@ public class NotificationMaster : IDalamudPlugin
                 if(args.Length == 1)
                 {
                     PauseUntil = long.MaxValue;
-                    Notify.Success("Plugin paused until restart");
+                    Notify.Success("插件已暫停，直到重新啟動");
                 }
                 else
                 {
                     if(uint.TryParse(args[1], out var minutes))
                     {
                         PauseUntil = Environment.TickCount64 + minutes * 60 * 1000;
-                        Notify.Success($"Plugin paused for {minutes} minutes");
+                        Notify.Success($"插件已暫停 {minutes} 分鐘");
                     }
                     else
                     {
-                        Notify.Error("Please enter amount of time in minutes");
+                        Notify.Error("請輸入要暫停的分鐘數");
                     }
                 }
             }
             else if(args[0].Equals("resume", StringComparison.OrdinalIgnoreCase) || args[0].Equals("r", StringComparison.OrdinalIgnoreCase))
             {
                 PauseUntil = 0;
-                Notify.Success("Plugin operation resumed");
+                Notify.Success("插件已恢復運作");
             }
             else
             {
-                Notify.Error("Invanid command");
+                Notify.Error("無效的指令");
             }
         }
     }

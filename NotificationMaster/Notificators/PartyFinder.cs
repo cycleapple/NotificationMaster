@@ -59,11 +59,11 @@ internal unsafe class PartyFinder : IDisposable
         {
             if(oldCount > memberCount)
             {
-                Notify("A player has left the party.");
+                Notify("有玩家離開隊伍。");
             }
             else
             {
-                Notify("A player has joined the party.");
+                Notify("有玩家加入隊伍。");
             }
         }
     }
@@ -74,11 +74,11 @@ internal unsafe class PartyFinder : IDisposable
 
         if(p.cfg.partyFinder_Delisted && (id == 981 || id == 982 || id == 985 || id == 986 || id == 7448))
         {
-            Notify("Party recruitment ended.");
+            Notify("隊員招募已結束。");
         }
         else if(id == 983 || id == 984 || id == 7451 || id == 7452)
         {
-            Notify("Party recruitment ended. All places have been filled.");
+            Notify("隊員招募已結束，隊伍已滿員。");
         }
     }
 
