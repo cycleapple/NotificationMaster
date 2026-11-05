@@ -1,0 +1,8 @@
+[
+  {
+    "path": "NotificationMasterAPI",
+    "baseCommit": "b2dec963ceb1a3b9f67306612c3a369f02bf6f4d",
+    "patch": "patches/c45b813942d69643.patch",
+    "sha256": "24de918f8b526da78f02c535a023c47bd0b022eaea5a7ebe050d383c84f5f52b"
+  }
+]
